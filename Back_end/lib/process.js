@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+const albumArt = require( 'album-art' )
 
 const uri = "mongodb+srv://Assignment6:password1234@ase220.8znrdij.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -114,7 +115,17 @@ async function PUT(req, res){
   
 		try {
 		  let data = JSON.parse(body);
-  
+
+			//loop through all albums and update the image if a link does not exist
+			for (let i = 0; i < data.length; i++) {
+				if (!data[i].image) {
+					const art = await albumArt(data[i].band, { album: data[i].album, size: 'large' });
+					if (art) {
+						data[i].image = art;
+					}
+				}
+			}
+
 		  const result = await collection.updateOne(
 			{},
 			{ $set: { Data: data } },

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "album-art": "^3.1.0",
     "mongodb": "^5.3.0"
   }
 }

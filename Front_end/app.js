@@ -4,24 +4,53 @@ const albums={
 		document.getElementById('albums').innerHTML='Loading albums, please wait...';
 		database.index(albums.documentID,function(items){
 			document.getElementById('albums').innerHTML='';
+			let cardColumn = document.createElement('div');
+			cardColumn.setAttribute('class','card-columns');
 			for(let i=0;i<items.length;i++){
-				console.log(i);
-				let item = document.createElement('div');
+				//console.log(i);
+				//let item = document.createElement('div');
 				
-				if(i%2 == 0){
-					item.style.backgroundColor='#FF4365';
-				}
-				else{
-					item.style.backgroundColor='#00D9C0';
-				}
+				//if(i%2 == 0){
+					//item.style.backgroundColor='#FF4365';
+				//}
+				//else{
+					//item.style.backgroundColor='#00D9C0';
+				//}
 
-				item.innerHTML =`<blockquote>
-							<em><a href="detail.html?index=${i}"><text style="color:black">${items[i].album}</a></em>
-						</blockquote>
-						${items[i].band}`;
-					document.getElementById('albums').append(item);
+				//item.innerHTML =`<blockquote>
+							//<em><a href="detail.html?index=${i}"><text style="color:black">${items[i].album}</a></em>
+						//</blockquote>
+//						${items[i].band}`;
+//					document.getElementById('albums').append(item);
+				
+				let card = document.createElement('div');
+				card.setAttribute('class','card');
+				card.setAttribute('style','width: 18rem;');
+				let cardImage = document.createElement('img');
+				cardImage.setAttribute('class','card-img-top');
+				cardImage.setAttribute('src',`${items[i].image}`);
+				cardImage.setAttribute('alt','Card image cap');
+				let cardBody = document.createElement('div');
+				cardBody.setAttribute('class','card-body');
+				let cardTitle = document.createElement('h5');
+				cardTitle.setAttribute('class','card-title');
+				cardTitle.innerText = items[i].album;
+				let cardText = document.createElement('p');
+				cardText.setAttribute('class','card-text');
+				cardText.innerText = items[i].band;
+				let cardLink = document.createElement('a');
+				cardLink.setAttribute('href',`detail.html?index=${i}`);
+				cardLink.setAttribute('class','btn btn-primary');
+				cardLink.innerText = 'Go somewhere';
+				cardBody.append(cardTitle);
+				cardBody.append(cardText);
+				cardBody.append(cardLink);
+				card.append(cardImage);
+				card.append(cardBody);
+				cardColumn.append(card);
 				
 			}
+			document.getElementById('albums').append(cardColumn);
 		});
 	},
 	detail:function(index){
