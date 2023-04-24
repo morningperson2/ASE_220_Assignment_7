@@ -1,0 +1,47 @@
+### GET REQUEST
+GET http://localhost:8080/api/
+
+
+### POST REQUEST
+POST http://localhost:8080/api/
+content-type: application/json
+
+{
+  "album": "Test Album",
+  "genre": "Test genre",
+  "year": "2023",
+  "label": "Me",
+  "description": "Here is a description of the album",
+  "reviews": [
+    {
+      "name": "Paul",
+      "text": "Here is a test review of this album"
+    },
+    {
+      "name": "Paul",
+      "text": "Here is another review"
+    },
+    {
+      "name": "name",
+      "text": "sasdfdbvn"
+    },
+    {
+      "name": "qwefrgf",
+      "text": "hgbfvdc"
+    }
+  ],
+  "band": "Test band"
+}
+
+
+### PUT REQUEST
+PUT http://localhost:8080/api/
+content-type: application/json
+
+{
+	"hello":"world",
+	"test":"xxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+
+### DELETE REQUEST
+DELETE http://localhost:8080/api/12
