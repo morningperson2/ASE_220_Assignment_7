@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 const albumArt = require( 'album-art' )
 
+
 const uri = "mongodb+srv://Assignment6:password1234@ase220.8znrdij.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
