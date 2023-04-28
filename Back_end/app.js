@@ -1,10 +1,11 @@
 const http=require('http');
 //const server=http.createServer().listen(8080);
 const process=require('./lib/process.js');
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const ejs = require('ejs');
 const { MongoClient } = require('mongodb');
-const albumArt = require( 'album-art' )
+const albumArt = require( 'album-art' );
 
 const uri = "mongodb+srv://Assignment6:password1234@ase220.8znrdij.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -12,6 +13,8 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 //server.on('request',async(req,res)=>{
 //	process(req,res);
 //});
+
+app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
@@ -157,8 +160,15 @@ app.delete('/api/:index', async (req, res) => {
     }
 });
 
-
-
-app.get('/about', (req, res) => {
-	res.send('About page');
-})
+app.get('/example_album', (req, res) => {
+    const data={
+        album: 'Example Album',
+        band: 'Example Band',
+        year: '2020',
+        genre: 'Example Genre',
+        label: 'Example Label',
+        description: 'Example Description',
+        reviews: 'Example Review',
+    };
+    res.render('example_album', data);
+});
