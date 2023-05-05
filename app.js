@@ -1,6 +1,3 @@
-const http=require('http');
-//const server=http.createServer().listen(8080);
-const process=require('./lib/process.js');
 const express = require('express');
 const app = express();
 const ejs = require('ejs');
@@ -9,10 +6,6 @@ const albumArt = require( 'album-art' );
 
 const uri = "mongodb+srv://Assignment6:password1234@ase220.8znrdij.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-//server.on('request',async(req,res)=>{
-//	process(req,res);
-//});
 
 app.set('view engine', 'ejs');
 
@@ -33,11 +26,6 @@ app.use('/api', (req, res, next) => {
   
 	//Write something in the header of the response 
 	res.setHeader('Access-Control-Allow-Origin', '*');
-	//res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	//res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
-	//res.setHeader('Access-Control-Max-Age', 2592000); // 30 days
-	//res.writeHead(200,{'Content-Type':'application/json'});
-	//express.json();
 	next();
 });
 
